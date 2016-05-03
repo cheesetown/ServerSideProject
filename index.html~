@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>Index</title>
+</head>
+
+<section>
+<H1 align="center">
+<a href="/create">Create new restaurant</a><br/>
+<a href="/list">List all restaurants</a><br/>
+<a href="/update">Update restaurants</a><br/>
+<a href="/delete">Delete restaurants</a>
+</H1>
+</section>
+</body>
+</html>

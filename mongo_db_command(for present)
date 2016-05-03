@@ -1,0 +1,45 @@
+mongoimport --db test --collection restaurants --file restaurant.json
+mongoimport --db test --collection restaurant1 --file restaurant.json
+
+//1st step
+db.createCollection("counters")
+
+
+//2nd step
+db.counters.insert({
+  "_id":"restaurantids",
+  "sequence_value": 0
+})
+
+
+
+
+//3rd step
+function getNextSequenceValue(sequenceName){
+
+   var sequenceDocument = db.counters.findAndModify({
+      query:{_id: sequenceName },
+      update: {$inc:{sequence_value:1}},
+      new:true
+   });
+	
+   return sequenceDocument.sequence_value;
+}
+
+//4th step 
+db.restaurants.insert({
+   "_id":getNextSequenceValue("restaurantid"),
+   "name":"CCC Restaurant",
+   "cuisine":"Chinese"})
+
+db.restaurants.insert({
+   "_id":getNextSequenceValue("restaurantid"),
+   "name":"GGG Restaurant",
+   "cuisine":"FastFood"})
+
+
+
+
+
+
+
